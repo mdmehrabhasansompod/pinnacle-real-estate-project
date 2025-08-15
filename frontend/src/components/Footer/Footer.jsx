@@ -61,7 +61,7 @@ const Footer = () => {
 
       {/* Divider and Bottom */}
       <div className="border-t border-gray-700 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-sans gap-4 md:gap-0">
-        <p>@2024 Pinnacle. All Rights Reserved | Developed by MVIOT PV</p>
+        <p>@2025 Pinnacle. All Rights Reserved | Developed by MVIOT PV</p>
         <div className="flex gap-6 text-white text-xl">
           <a href="#" aria-label="Facebook" className="hover:text-[#FF5200]"><FaFacebookF /></a>
           <a href="#" aria-label="LinkedIn" className="hover:text-[#FF5200]"><FaLinkedinIn /></a>

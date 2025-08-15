@@ -20,7 +20,7 @@ import Client3 from "./Client3.png"
 import Client4 from "./Client4.png"
 import NewsVector from "./NewsVector.png"
 import faqvector from "./faqvector.png"
-import byebye from "./byebye.png"
+import blackVector from "./blackVector.png"
 import uppervector from "./uppervector.png"
 import lowervector from "./lowervector.png"
 
@@ -47,7 +47,7 @@ export const assets = {
     Client4,
     NewsVector,
     faqvector,
-    byebye,
+    blackVector,
     uppervector,
     lowervector,
     

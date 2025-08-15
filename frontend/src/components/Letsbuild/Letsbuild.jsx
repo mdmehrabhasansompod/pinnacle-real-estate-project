@@ -28,7 +28,7 @@ const LetsBuild = () => {
         <h1 className="text-2xl sm:text-3xl md:text-4xl inline-flex items-center justify-center gap-2 leading-tight whitespace-nowrap">
           Let&apos;s Build
           <img
-            src={assets.byebye}
+            src={assets.blackVector}
             alt="Wave"
             className="h-[24px] sm:h-[32px] md:h-[40px] inline-block align-baseline"
           />
