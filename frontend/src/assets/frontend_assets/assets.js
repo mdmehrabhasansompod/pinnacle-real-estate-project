@@ -7,9 +7,12 @@ import building from "./building.png"
 import flyershape from "./flyer-shape.png"
 import flyerRating from "./flyerRating.png"
 import projectvector from "./projectvector.png"
-import card1 from "./card1.png"
-import card2 from "./card2.png"
-import card3 from "./card3.png"
+import project1 from "./project1.png"
+import project2 from "./project2.png"
+import project3 from "./project3.png"
+import project4 from "./project3.png"
+import project5 from "./project2.png"
+import project6 from "./project1.png"
 import location from "./location.svg"
 import servicevector from "./servicevector.png"
 import serviceimg from "./serviceimg.png"
@@ -23,8 +26,14 @@ import faqvector from "./faqvector.png"
 import blackVector from "./blackVector.png"
 import uppervector from "./uppervector.png"
 import lowervector from "./lowervector.png"
-
-
+import aboutHeroImg1 from "./about-hero1.png"
+import aboutHeroImg2 from "./about-hero2.png"
+import ceoIMG from "./ceoIMG.png"
+import achievementAbout from "./achievementAbout.png"
+import teamVector from "./teamVector.png"
+import tm2 from "./tm2.png"
+import tm3 from "./tm3.png"
+import tm4 from "./tm4.png"
 
 
 
@@ -41,73 +50,87 @@ export const assets = {
     location,
     servicevector,
     clientsvector,
-    Client1,
-    Client2,
-    Client3,
-    Client4,
+    project1,
+    project2,
+    project3,
+    project4,
+    project5,
+    project6,
     NewsVector,
     faqvector,
     blackVector,
     uppervector,
     lowervector,
+    aboutHeroImg1,
+    aboutHeroImg2,
+    ceoIMG,
+    achievementAbout,
+    teamVector,
+    tm2,
+    tm3,
+    tm4,
+    Client1,
+    Client2,
+    Client3,
+    Client4
     
 }
 
 
 // src/assets/frontend_assets/projectsData.js
 
+
+// Array with project details and USA locations
 export const projectsData = [
-    {
-      id: 1,
-      title: "The Grand Estate",
-      description:
-        "We've built a reputation for delivering exceptional results and exceeding our clients' expectations.",
-      location: "Uptown, Dhaka",
-      speciality: "Movie Theatre",
-      image: card1, // Place image in public/images/
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Urban Oasis",
-      description:
-        "Modern luxury in the heart of the city with eco-conscious design and premium comfort.",
-      location: "Gulshan, Dhaka",
-      speciality: "Infinity Pool",
-      image: card2,
-      featured: false,
-    },
-    {
-      id: 3,
-      title: "Green Heights",
-      description:
-        "A blend of nature and architecture to elevate sustainable living experiences.",
-      location: "Banani, Dhaka",
-      speciality: "Rooftop Garden",
-      image: card3,
-      featured: false,
-    },
-    {
-      id: 4,
-      title: "Skyline Tower",
-      description:
-        "A luxury skyscraper offering unmatched views and world-class amenities.",
-      location: "Mirpur DOHS, Dhaka",
-      speciality: "Helipad",
-      image: card2,
-      featured: true,
-    },
-    {
-      id: 5,
-      title: "Sunset Villas",
-      description:
-        "Exclusive villas designed for privacy, elegance, and stunning sunsets.",
-      location: "Cox's Bazar",
-      speciality: "Private Beach Access",
-      image: card1,
-      featured: false,
-    },
-  ];
+  {
+    id: 1,
+    title: 'Sunset Villas',
+    description: 'Luxury villas with modern architecture in California.',
+    location: 'Los Angeles, USA',
+    speciality: 'Residential',
+    image: assets.project1,
+  },
+  {
+    id: 2,
+    title: 'Downtown Office Complex',
+    description: 'State-of-the-art commercial office spaces in NYC.',
+    location: 'New York, USA',
+    speciality: 'Commercial',
+    image: assets.project2,
+  },
+  {
+    id: 3,
+    title: 'Riverside Apartments',
+    description: 'Affordable yet stylish apartments near Chicago River.',
+    location: 'Chicago, USA',
+    speciality: 'Residential',
+    image: assets.project3,
+  },
+  {
+    id: 4,
+    title: 'Silicon Tech Hub',
+    description: 'High-tech office buildings in Silicon Valley.',
+    location: 'San Francisco, USA',
+    speciality: 'Commercial',
+    image: assets.project4,
+  },
+  {
+    id: 5,
+    title: 'Beachfront Condos',
+    description: 'Modern condos with ocean views in Miami.',
+    location: 'Miami, USA',
+    speciality: 'Residential',
+    image: assets.project5,
+  },
+  {
+    id: 6,
+    title: 'Mountain Retreat',
+    description: 'Luxury cabins and resorts in Colorado Rockies.',
+    location: 'Denver, USA',
+    speciality: 'Hospitality',
+    image: assets.project6,
+  },
+];
   
 
   export const serviceCategories = [
