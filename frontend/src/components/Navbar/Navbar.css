@@ -1,0 +1,19 @@
+.active {
+    background-color: rgb(44, 44, 44);
+    display: block;
+    padding: 0.5rem 1rem; /* some padding for clickable area */
+    border-radius: 0.375rem; /* rounded corners */
+    color: #e5e7eb; /* Tailwind’s gray-200 */
+    transition: background-color 0.3s;
+  }
+  
+
+
+  
+  .active:hover {
+    background-color: rgb(64, 64, 64);
+    cursor: pointer;
+  }
+  
+
+

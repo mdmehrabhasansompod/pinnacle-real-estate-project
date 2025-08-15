@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,600;1,14..32,600&family=Special+Gothic+Expanded+One&display=swap');
+@import "tailwindcss";
+
+@theme{
+    --font-Gothic:"Special Gothic Expanded One", sans-serif;
+    --font-body : "inter", sans-serif;
+  }
+
+
+body{
+    background-color: black;
+    overflow-x: hidden;
+}
+
+.primary-button{
+    color: white;
+    padding: 16px 24px;
+    background: #201F1F;
+    box-shadow: inset -3px 5px 4px #2C2C2C;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.secondary-button{
+color: white;
+padding: 16px 24px;
+background: #FF5200;
+box-shadow: inset -3px 5px 4px #FE6D2F;
+border-radius: 8px;
+cursor: pointer;
+font-family: sans-serif;
+}
+
+
