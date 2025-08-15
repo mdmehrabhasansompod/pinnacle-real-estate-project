@@ -1,0 +1,1 @@
+Pinnacle is a MERN stack real estate web app that displays property listings with images and details. The app has a fully responsive design and integrates front-end and back-end functionality to provide a smooth browsing experience on both desktop and mobile devices.
