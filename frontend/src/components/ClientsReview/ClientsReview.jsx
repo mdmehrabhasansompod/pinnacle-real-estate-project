@@ -67,29 +67,59 @@ export const ClientsReview = () => {
       />
 
       {/* Client Cards */}
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-        {clientReviews.map((client, idx) => (
-          <motion.div
-            key={client.id}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.02, duration: 0.6, ease: 'easeOut' }}
-            whileHover={{ scale: 1.03, boxShadow: '0 15px 25px rgba(255,255,255,0.1)' }}
-            className="flex flex-col sm:flex-row items-center gap-4 p-6 border border-white/20 bg-black rounded-lg cursor-pointer"
-          >
-            <img
-              src={client.image}
-              alt={client.name}
-              className="h-[100px] w-[100px] object-cover rounded-full flex-shrink-0"
-            />
-            <div className="text-white text-center sm:text-left">
-              <p className="text-sm italic">{client.message}</p>
-              <p className="mt-3 text-orange-400 font-semibold">– {client.name}</p>
-              <p className="text-sm text-gray-400">{client.title}</p>
-            </div>
-          </motion.div>
-        ))}
+      <div className="mt-10">
+        {/* Grid for md and up */}
+        <div className="hidden md:grid md:grid-cols-3 xl:grid-cols-3 gap-6">
+          {clientReviews.map((client, idx) => (
+            <motion.div
+              key={client.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.05, duration: 0.6, ease: 'easeOut' }}
+              whileHover={{ scale: 1.03, boxShadow: '0 15px 25px rgba(255,255,255,0.1)' }}
+              className="flex flex-col items-center gap-4 p-6 border border-white/20 bg-black rounded-lg cursor-pointer"
+            >
+              <img
+                src={client.image}
+                alt={client.name}
+                className="h-[100px] w-[100px] object-cover rounded-full"
+              />
+              <div className="text-white text-center">
+                <p className="text-sm italic">{client.message}</p>
+                <p className="mt-3 text-orange-400 font-semibold">– {client.name}</p>
+                <p className="text-sm text-gray-400">{client.title}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Horizontal scroll for mobile */}
+        <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth">
+          {clientReviews.map((client, idx) => (
+            <motion.div
+              key={client.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.05, duration: 0.6, ease: 'easeOut' }}
+              whileHover={{ scale: 1.03, boxShadow: '0 15px 25px rgba(255,255,255,0.1)' }}
+              className="snap-start flex-shrink-0 w-[280px] flex flex-col items-center gap-4 p-6 border border-white/20 bg-black rounded-lg cursor-pointer"
+            >
+              <img
+                src={client.image}
+                alt={client.name}
+                className="h-[100px] w-[100px] object-cover rounded-full"
+              />
+              <div className="text-white text-center">
+                <p className="text-sm italic">{client.message}</p>
+                <p className="mt-3 text-orange-400 font-semibold">– {client.name}</p>
+                <p className="text-sm text-gray-400">{client.title}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
+
+

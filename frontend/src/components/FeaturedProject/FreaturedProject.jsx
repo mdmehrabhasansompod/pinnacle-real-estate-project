@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaMapMarkerAlt } from 'react-icons/fa';
-import { assets } from '../../assets/frontend_assets/assets'; // Your images
-import { projectsData } from '../../assets/frontend_assets/assets';
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { assets, projectsData } from "../../assets/frontend_assets/assets";
 
 const ProjectsPreview = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,7 +30,6 @@ const ProjectsPreview = () => {
 
   return (
     <div className='projects-section w-[90%] max-w-[1400px] mx-auto py-16 mt-[100px] relative font-Gothic'>
-
       {/* Title */}
       <div className='flex items-center gap-3 mb-6'>
         <img src={assets.projectvector} alt="Vector Decoration" className='w-6 sm:w-8' />
@@ -52,64 +49,70 @@ const ProjectsPreview = () => {
         </Link>
       </div>
 
-      {/* Project Cards Grid */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
-        <AnimatePresence>
-          {visibleProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              className='p-4 bg-[#1a1a1a] border border-white/20 rounded-xl shadow-lg text-white flex flex-col transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl'
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              variants={cardVariants}
-              transition={{ delay: index * 0.15, duration: 0.5 }}
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className='h-[200px] w-full object-cover rounded-md'
-              />
-              <h4 className='text-lg sm:text-xl font-semibold mt-4'>{project.title}</h4>
-              <p className='text-gray-400 mt-2 text-sm font-sans font-extralight line-clamp-2'>{project.description}</p>
-              <p className='text-sm text-gray-400 mt-2 flex items-center'>
-                <FaMapMarkerAlt className='w-4 h-4 mr-1' />
-                {project.location}
-              </p>
-              <p className='mt-3 inline-block text-xs border border-white text-white px-2 py-[2px] rounded-full'>
-                {project.speciality}
-              </p>
-              <button className='secondary-button !px-[80px] mt-5 mx-auto block'>
-                View Property
-              </button>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
+     {/* Project Cards Grid / Horizontal scroll on mobile */}
+<div className='flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-x-auto sm:overflow-visible scroll-smooth snap-x snap-mandatory'>
+  <AnimatePresence>
+    {visibleProjects.map((project, index) => (
+      <motion.div
+        key={project.id}
+        className='min-w-[280px] sm:min-w-0 p-4 bg-[#1a1a1a] border border-white/20 rounded-xl shadow-lg text-white flex-shrink-0 flex flex-col transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl snap-start'
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        variants={cardVariants}
+        transition={{ delay: index * 0.15, duration: 0.5 }}
+      >
+        <img
+          src={project.image}
+          alt={project.title}
+          className='h-[200px] w-full object-cover rounded-md'
+        />
+        <h4 className='text-lg sm:text-xl font-semibold mt-4'>{project.title}</h4>
+        <p className='text-gray-400 mt-2 text-sm font-sans font-extralight line-clamp-2'>{project.description}</p>
+        <p className='text-sm text-gray-400 mt-2 flex items-center'>
+          <FaMapMarkerAlt className='w-4 h-4 mr-1' />
+          {project.location}
+        </p>
+        <p className='mt-3 inline-block text-xs border border-white text-white px-2 py-[2px] rounded-full'>
+          {project.speciality}
+        </p>
+        <button className='secondary-button !px-[80px] mt-5 mx-auto block'>
+          View Property
+        </button>
+      </motion.div>
+    ))}
+  </AnimatePresence>
+</div>
+
 
       {/* Navigation Controls */}
-      <div className='w-full flex flex-col sm:flex-row justify-between items-center mt-8 gap-4 px-0 sm:px-4'>
-        <p className='text-sm text-gray-500 font-sans'>
-          Showing {Math.min(currentIndex + 1, projectsData.length)}–{Math.min(currentIndex + itemsPerPage, projectsData.length)} of {projectsData.length} Projects
-        </p>
+      {/* Navigation Controls */}
+<div className='w-full flex flex-col sm:flex-row justify-between items-center mt-8 gap-4 px-0 sm:px-4'>
+  
+  {/* Only visible on sm+ */}
+  <p className='text-sm text-gray-500 font-sans hidden sm:block'>
+    Showing {Math.min(currentIndex + 1, projectsData.length)}–{Math.min(currentIndex + itemsPerPage, projectsData.length)} of {projectsData.length} Projects
+  </p>
 
-        <div className='flex gap-4'>
-          <button
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-            className='px-4 py-2 bg-amber-50 border cursor-pointer rounded disabled:opacity-40 hover:bg-gray-100 transition'
-          >
-            Prev
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={currentIndex + itemsPerPage >= projectsData.length}
-            className='px-4 py-2 bg-amber-50 border cursor-pointer rounded disabled:opacity-40 hover:bg-gray-100 transition'
-          >
-            Next
-          </button>
-        </div>
-      </div>
+  {/* Buttons only visible on sm+ */}
+  <div className='flex gap-4 hidden sm:flex'>
+    <button
+      onClick={handlePrev}
+      disabled={currentIndex === 0}
+      className='px-4 py-2 bg-amber-50 border cursor-pointer rounded disabled:opacity-40 hover:bg-gray-100 transition'
+    >
+      Prev
+    </button>
+    <button
+      onClick={handleNext}
+      disabled={currentIndex + itemsPerPage >= projectsData.length}
+      className='px-4 py-2 bg-amber-50 border cursor-pointer rounded disabled:opacity-40 hover:bg-gray-100 transition'
+    >
+      Next
+    </button>
+  </div>
+</div>
+
     </div>
   );
 };

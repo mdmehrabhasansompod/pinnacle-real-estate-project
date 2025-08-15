@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const faqData = [
   {
@@ -22,6 +22,12 @@ const faqData = [
 ];
 
 const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFAQ = (idx) => {
+    setOpenIndex(openIndex === idx ? null : idx); // toggle open/close
+  };
+
   return (
     <div className='faq w-[90%] max-w-[1200px] mx-auto mt-24 px-4 md:px-0'>
       <h3 className='flex items-center text-white text-2xl md:text-3xl font-Gothic mb-12'>
@@ -29,18 +35,36 @@ const FAQ = () => {
         Frequently Asked Questions
       </h3>
 
-      <div className="faq-container border-[0.5px] border-amber-50 rounded-lg p-4 md:p-6 grid grid-cols-1 md:grid-cols-2 gap-6 text-white">
+      <div className="faq-container border-[0.5px] border-amber-50 rounded-lg p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 text-white">
         {faqData.map(({ question, answer }, idx) => (
           <motion.div
             key={idx}
-            className="faqs border-[0.5px] border-white bg-black rounded-lg p-6 flex flex-col gap-5"
+            className="faqs border-[0.5px] border-white bg-black rounded-lg p-6 cursor-pointer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: idx * 0.15 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            onClick={() => toggleFAQ(idx)}
             whileHover={{ scale: 1.02, boxShadow: '0px 10px 20px rgba(255, 255, 255, 0.1)' }}
           >
-            <p className='font-Gothic text-lg md:text-xl'>{question}</p>
-            <p className='font-sans text-sm md:text-base leading-relaxed'>{answer}</p>
+            <p className='font-Gothic text-lg md:text-xl flex justify-between items-center'>
+              {question}
+              <span className='ml-2 text-orange-400'>
+                {openIndex === idx ? '−' : '+'}
+              </span>
+            </p>
+            <AnimatePresence>
+              {openIndex === idx && (
+                <motion.p
+                  className='font-sans text-sm md:text-base mt-3 leading-relaxed'
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {answer}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </motion.div>
         ))}
       </div>
