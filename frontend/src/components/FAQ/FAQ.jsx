@@ -1,5 +1,4 @@
 import React from 'react'
-import "./FAQ.css"
 import { assets } from '../../assets/frontend_assets/assets'
 
 const FAQ = () => {

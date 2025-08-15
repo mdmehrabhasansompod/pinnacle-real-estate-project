@@ -1,5 +1,4 @@
 import React from 'react';
-import "./Flyer.css";
 import { assets } from '../../assets/frontend_assets/assets';
 
 const Flyer = () => {

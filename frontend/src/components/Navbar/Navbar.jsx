@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { assets } from '../../assets/frontend_assets/assets';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import './Navbar.css';
 
 const Navbar = () => {
   const [menu, setMenu] = useState('Home');
