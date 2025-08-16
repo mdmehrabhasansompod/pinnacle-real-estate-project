@@ -32,33 +32,3 @@ cursor: pointer;
 font-family: sans-serif;
 }
 
-
-
-  .iti {
-    width: 100%;
-  }
-  .iti__country-list {
-    background-color: #374151 !important; /* bg-gray-700 */
-    border-color: #4B5563 !important; /* border-gray-600 */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
-  .iti__divider {
-    border-bottom-color: #4B5563 !important; /* border-gray-600 */
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-  }
-  .iti__country {
-    color: #F3F4F6 !important; /* text-gray-200 */
-  }
-  .iti__country:hover, .iti__country.iti__highlight {
-    background-color: #4B5563 !important; /* hover:bg-gray-600 */
-  }
-  .iti__selected-flag {
-    background-color: transparent !important;
-  }
-  .iti__arrow {
-    border-top-color: #9CA3AF !important; /* text-gray-400 */
-  }
-  .iti__arrow--up {
-    border-bottom-color: #9CA3AF !important; /* text-gray-400 */
-  }
