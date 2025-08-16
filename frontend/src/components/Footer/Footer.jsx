@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import {
   FaFacebookF,
@@ -12,6 +12,22 @@ import { assets } from '../../assets/frontend_assets/assets';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState(null);
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    if (!email) {
+      setStatus('Please enter a valid email.');
+      return;
+    }
+    // Replace this with your backend API call or mailing service
+    console.log('Email submitted:', email);
+    setStatus(`Thank you! We'll keep you updated.`);
+    setEmail('');
+    setTimeout(() => setStatus(null), 4000);
+  };
+
   const menus = [
     { 
       title: 'Navigation', 
@@ -77,12 +93,15 @@ const Footer = () => {
           <img src={assets.logo} alt="Pinnacle Logo" className="w-36 sm:w-44" />
           
           {/* Email subscription */}
-          <div className="relative w-full max-w-md group">
+          <form onSubmit={handleEmailSubmit} className="relative w-full max-w-md group">
             <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 transition group-focus-within:text-orange-500" />
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full pl-10 pr-12 py-2 rounded-md text-black font-Gothic placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
+              required
             />
             <button
               type="submit"
@@ -91,7 +110,8 @@ const Footer = () => {
             >
               <FaPaperPlane />
             </button>
-          </div>
+          </form>
+          {status && <p className="text-sm text-green-400 mt-2">{status}</p>}
         </motion.div>
 
         {/* Footer Menus */}

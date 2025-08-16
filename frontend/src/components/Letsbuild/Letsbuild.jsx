@@ -14,7 +14,7 @@ const LetsBuild = () => {
       <motion.img
         src={assets.uppervector}
         alt="Top Left Decoration"
-        className="absolute top-0 left-0 w-[160px] md:w-[200px] z-20 pointer-events-none"
+        className="absolute top-0 left-0 w-[120px] sm:w-[160px] md:w-[200px] z-20 pointer-events-none"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -23,7 +23,7 @@ const LetsBuild = () => {
       <motion.img
         src={assets.lowervector}
         alt="Bottom Right Decoration"
-        className="absolute bottom-0 right-0 w-[160px] md:w-[200px] z-20 pointer-events-none"
+        className="absolute bottom-0 right-0 w-[120px] sm:w-[160px] md:w-[200px] z-20 pointer-events-none"
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -35,24 +35,24 @@ const LetsBuild = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <h1 className="text-2xl sm:text-3xl md:text-4xl inline-flex items-center justify-center gap-2 leading-tight whitespace-nowrap">
+        <h1 className="text-xl sm:text-2xl md:text-4xl inline-flex items-center justify-center gap-2 leading-tight whitespace-nowrap">
           Let&apos;s Build
           <motion.img
             src={assets.blackVector}
             alt="Wave"
-            className="h-[24px] sm:h-[32px] md:h-[40px] inline-block align-baseline"
+            className="h-[18px] sm:h-[24px] md:h-[40px] inline-block align-baseline"
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           />
           Something
         </h1>
-        <h2 className="text-xl sm:text-2xl md:text-3xl mt-2 md:mt-4">
+        <h2 className="text-base sm:text-xl md:text-3xl mt-2 md:mt-4">
           Extraordinary Together
         </h2>
 
         <Link
           to="/projects"
-          className="mt-8 sm:mt-12 bg-black text-white font-sans px-5 sm:px-6 py-3 rounded hover:bg-gray-900 transition-colors duration-300"
+          className="mt-6 sm:mt-8 md:mt-12 bg-black text-white font-sans px-4 sm:px-5 md:px-6 py-2 sm:py-3 rounded hover:bg-gray-900 transition-colors duration-300 text-sm sm:text-base md:text-lg"
         >
           View Our Projects
         </Link>

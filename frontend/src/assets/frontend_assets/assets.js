@@ -34,7 +34,11 @@ import teamVector from "./teamVector.png"
 import tm2 from "./tm2.png"
 import tm3 from "./tm3.png"
 import tm4 from "./tm4.png"
-
+import serviceHero from "./service-hero.png"
+import service1 from "./service1.png"
+import service2 from "./service2.png"
+import service3 from "./service3.png"
+import serviceContact from "./cb-contact.png"
 
 
 export const assets = {
@@ -72,7 +76,14 @@ export const assets = {
     Client1,
     Client2,
     Client3,
-    Client4
+    Client4,
+    serviceHero,
+    service1,
+    service2,
+    service3,
+    serviceContact,
+
+
     
 }
 
