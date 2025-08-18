@@ -32,3 +32,20 @@ cursor: pointer;
 font-family: sans-serif;
 }
 
+/* === intl-tel-input overrides === */
+.iti__country-list {
+    background-color: #000 !important;
+    color: #fff !important;
+    border: 1px solid #333 !important;
+  }
+  
+  .iti__country:hover {
+    background-color: #111 !important;
+  }
+  
+  .iti__search-input {
+    background-color: #111 !important;
+    color: #fff !important;
+    border: 1px solid #444 !important;
+  }
+  

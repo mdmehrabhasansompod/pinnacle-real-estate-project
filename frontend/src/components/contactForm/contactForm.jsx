@@ -175,7 +175,7 @@ const ContactForm = () => {
                   </div>
                   {field.type === "phone" ? (
                     <>
-                      <div className="absolute inset-y-0 left-10 pl-2 flex items-center text-xl pointer-events-none">
+                      <div className="absolute inset-y-0 left-10 pl-2 flex  items-center text-xl pointer-events-none">
                         {countryFlag}
                       </div>
                       <input
@@ -190,7 +190,7 @@ const ContactForm = () => {
                             }));
                         }}
                         required
-                        className="block w-full sm:pl-20 pl-16 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="block w-full sm:pl-20 pl-16 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                         placeholder="Phone number"
                       />
                     </>
@@ -201,7 +201,7 @@ const ContactForm = () => {
                       value={formData[field.name]}
                       onChange={handleChange}
                       required
-                      className="block w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="block w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                       placeholder={field.label}
                     />
                   )}
@@ -260,7 +260,7 @@ const ContactForm = () => {
                       name={field.name}
                       value={formData[field.name]}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="block w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                       placeholder={field.label}
                     />
                   ) : (
@@ -269,7 +269,7 @@ const ContactForm = () => {
                       value={formData[field.name]}
                       onChange={handleChange}
                       required
-                      className="block w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none"
+                      className="block w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500 appearance-none"
                     >
                       {field.options.map((opt) => (
                         <option key={opt} value={opt}>
@@ -301,7 +301,7 @@ const ContactForm = () => {
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className="block w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="block w-full pl-10 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="Tell us about your project..."
               />
             </div>

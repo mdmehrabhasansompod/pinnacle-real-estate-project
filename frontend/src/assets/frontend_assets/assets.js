@@ -39,6 +39,7 @@ import service1 from "./service1.png"
 import service2 from "./service2.png"
 import service3 from "./service3.png"
 import serviceContact from "./cb-contact.png"
+import projectPageHeader from "./projectPageHeader.png"
 
 
 export const assets = {
@@ -82,6 +83,7 @@ export const assets = {
     service2,
     service3,
     serviceContact,
+    projectPageHeader,
 
 
     
