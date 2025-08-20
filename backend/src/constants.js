@@ -1,0 +1,1 @@
+export const DB_NAME = "pinnacle-real-estate-app";
