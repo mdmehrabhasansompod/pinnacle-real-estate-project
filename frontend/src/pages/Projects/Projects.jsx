@@ -1,26 +1,107 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaMapMarkerAlt, FaBuilding, FaDollarSign, FaSearch, FaTimes } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaBuilding,
+  FaDollarSign,
+  FaSearch,
+  FaTimes,
+} from "react-icons/fa";
 import { assets } from "../../assets/frontend_assets/assets";
 import LetsBuild from "../../components/Letsbuild/Letsbuild";
 
 const projectsData = [
-  { id: 1, title: "Luxury Villa", description: "Spacious villa with modern design and swimming pool.", image: assets.project1, location: "New York", type: "Villa", cost: "$500,000", speciality: "Premium" },
-  { id: 2, title: "City Apartment", description: "Modern apartment in the city center.", image: assets.project2, location: "Los Angeles", type: "Apartment", cost: "$200,000", speciality: "Affordable" },
-  { id: 3, title: "Beach House", description: "A peaceful beachside property.", image: assets.project3, location: "Miami", type: "House", cost: "$300,000", speciality: "Holiday" },
-  { id: 4, title: "Office Tower", description: "Commercial office space for enterprises.", image: assets.project4, location: "Chicago", type: "Office", cost: "$1,000,000", speciality: "Commercial" },
-  { id: 5, title: "Lake View House", description: "Beautiful house overlooking the lake.", image: assets.project5, location: "San Francisco", type: "House", cost: "$350,000", speciality: "Scenic" },
-  { id: 6, title: "Penthouse Suite", description: "Luxury penthouse with skyline views.", image: assets.project6, location: "Seattle", type: "Apartment", cost: "$750,000", speciality: "Luxury" },
-  { id: 7, title: "Suburban Villa", description: "Modern villa in peaceful suburbs.", image: assets.project6, location: "Dallas", type: "Villa", cost: "$450,000", speciality: "Family" },
+  {
+    id: 1,
+    title: "Luxury Villa",
+    description: "Spacious villa with modern design and swimming pool.",
+    image: assets.project1,
+    location: "New York",
+    type: "Villa",
+    cost: "$500,000",
+    speciality: "Premium",
+  },
+  {
+    id: 2,
+    title: "City Apartment",
+    description: "Modern apartment in the city center.",
+    image: assets.project2,
+    location: "Los Angeles",
+    type: "Apartment",
+    cost: "$200,000",
+    speciality: "Affordable",
+  },
+  {
+    id: 3,
+    title: "Beach House",
+    description: "A peaceful beachside property.",
+    image: assets.project3,
+    location: "Miami",
+    type: "House",
+    cost: "$300,000",
+    speciality: "Holiday",
+  },
+  {
+    id: 4,
+    title: "Office Tower",
+    description: "Commercial office space for enterprises.",
+    image: assets.project4,
+    location: "Chicago",
+    type: "Office",
+    cost: "$1,000,000",
+    speciality: "Commercial",
+  },
+  {
+    id: 5,
+    title: "Lake View House",
+    description: "Beautiful house overlooking the lake.",
+    image: assets.project5,
+    location: "San Francisco",
+    type: "House",
+    cost: "$350,000",
+    speciality: "Scenic",
+  },
+  {
+    id: 6,
+    title: "Penthouse Suite",
+    description: "Luxury penthouse with skyline views.",
+    image: assets.project6,
+    location: "Seattle",
+    type: "Apartment",
+    cost: "$750,000",
+    speciality: "Luxury",
+  },
+  {
+    id: 7,
+    title: "Suburban Villa",
+    description: "Modern villa in peaceful suburbs.",
+    image: assets.project6,
+    location: "Dallas",
+    type: "Villa",
+    cost: "$450,000",
+    speciality: "Family",
+  },
 ];
 
-const cardVariants = { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -30 } };
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -30 },
+};
 
 const Projects = () => {
   const [showAll, setShowAll] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [appliedFilters, setAppliedFilters] = useState({ location: "", type: "", cost: "" });
-  const [tempFilters, setTempFilters] = useState({ location: "", type: "", cost: "" });
+  const [appliedFilters, setAppliedFilters] = useState({
+    location: "",
+    type: "",
+    cost: "",
+  });
+  const [tempFilters, setTempFilters] = useState({
+    location: "",
+    type: "",
+    cost: "",
+  });
 
   const handleToggleProjects = () => setShowAll(!showAll);
   const handleSearchChange = (e) => setSearchText(e.target.value);
@@ -42,20 +123,30 @@ const Projects = () => {
       const matchesSearch =
         p.title.toLowerCase().includes(searchText.toLowerCase()) ||
         p.description.toLowerCase().includes(searchText.toLowerCase());
-      const matchesLocation = appliedFilters.location === "" || p.location === appliedFilters.location;
-      const matchesType = appliedFilters.type === "" || p.type === appliedFilters.type;
-      const matchesCost = appliedFilters.cost === "" || p.cost === appliedFilters.cost;
+      const matchesLocation =
+        appliedFilters.location === "" ||
+        p.location === appliedFilters.location;
+      const matchesType =
+        appliedFilters.type === "" || p.type === appliedFilters.type;
+      const matchesCost =
+        appliedFilters.cost === "" || p.cost === appliedFilters.cost;
       return matchesSearch && matchesLocation && matchesType && matchesCost;
     });
   };
 
-  const displayedProjects = showAll ? getFilteredProjects() : getFilteredProjects().slice(0, 6);
+  const displayedProjects = showAll
+    ? getFilteredProjects()
+    : getFilteredProjects().slice(0, 6);
 
   return (
     <div className="w-full text-white flex flex-col items-center">
       {/* Hero Section */}
-      <div className="relative w-[90%] sm:w-[85%] md:w-[80%] h-[300px] sm:h-[350px] md:h-[450px] mx-auto">
-        <img src={assets.projectPageHeader} alt="Hero" className="w-full h-full object-cover rounded-lg" />
+      <div   id='search' className="relative w-[90%] sm:w-[85%] md:w-[80%] h-[300px] sm:h-[350px] md:h-[450px] mx-auto">
+        <img
+          src={assets.projectPageHeader}
+          alt="Hero"
+          className="w-full h-full object-cover rounded-lg"
+        />
 
         {/* Project Name Overlays - always visible */}
         <motion.div
@@ -111,7 +202,9 @@ const Projects = () => {
             <select
               className="bg-black text-white w-full p-2 rounded-lg focus:outline-none"
               value={tempFilters.location}
-              onChange={(e) => setTempFilters({ ...tempFilters, location: e.target.value })}
+              onChange={(e) =>
+                setTempFilters({ ...tempFilters, location: e.target.value })
+              }
             >
               <option value="">Location</option>
               <option>New York</option>
@@ -130,7 +223,9 @@ const Projects = () => {
             <select
               className="bg-black text-white w-full p-2 rounded-lg focus:outline-none"
               value={tempFilters.type}
-              onChange={(e) => setTempFilters({ ...tempFilters, type: e.target.value })}
+              onChange={(e) =>
+                setTempFilters({ ...tempFilters, type: e.target.value })
+              }
             >
               <option value="">Type</option>
               <option>Villa</option>
@@ -146,9 +241,11 @@ const Projects = () => {
             <select
               className="bg-black text-white w-full p-2 rounded-lg focus:outline-none"
               value={tempFilters.cost}
-              onChange={(e) => setTempFilters({ ...tempFilters, cost: e.target.value })}
+              onChange={(e) =>
+                setTempFilters({ ...tempFilters, cost: e.target.value })
+              }
             >
-              <option value="">Max Cost</option>
+              <option value="">Cost</option>
               <option>$200,000</option>
               <option>$500,000</option>
               <option>$750,000</option>
@@ -158,20 +255,45 @@ const Projects = () => {
 
           {/* Find / Clear */}
           <button
-            onClick={appliedFilters.location || appliedFilters.type || appliedFilters.cost ? handleClearFilters : handleFindProperty}
-            className={`${appliedFilters.location || appliedFilters.type || appliedFilters.cost ? "bg-red-600 hover:bg-red-700" : "secondary-button"} text-white transition rounded-lg p-3 font-semibold`}
+            onClick={
+              appliedFilters.location ||
+              appliedFilters.type ||
+              appliedFilters.cost
+                ? handleClearFilters
+                : handleFindProperty
+            }
+            className={`${
+              appliedFilters.location ||
+              appliedFilters.type ||
+              appliedFilters.cost
+                ? "bg-red-600 hover:bg-red-700"
+                : "secondary-button"
+            } text-white transition rounded-lg p-3 font-semibold`}
           >
-            {appliedFilters.location || appliedFilters.type || appliedFilters.cost ? "Clear" : "Find Property"}
+            {appliedFilters.location ||
+            appliedFilters.type ||
+            appliedFilters.cost
+              ? "Clear"
+              : "Find Property"}
           </button>
         </div>
       </div>
 
       {/* Intro Section */}
-      <div className="w-[90%] sm:w-[85%] md:w-[80%] mx-auto mt-28 text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4">
-        <img src={assets.projectvector} alt="Projects Icon" className="w-10 h-10 object-contain" />
+      <div id="all-projects" className="w-[90%] sm:w-[85%] md:w-[80%] mx-auto mt-28 text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4">
+        <img
+          src={assets.projectvector}
+          alt="Projects Icon"
+          className="w-10 h-10 object-contain"
+        />
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold font-Gothic">Our Exceptional Projects</h2>
-          <p className="text-gray-400 mt-3 max-w-2xl">Explore our portfolio to see the breadth and quality of our work, and get inspired to start your own dream project.</p>
+          <h2 className="text-3xl md:text-4xl font-bold font-Gothic">
+            Our Exceptional Projects
+          </h2>
+          <p className="text-gray-400 mt-3 max-w-2xl">
+            Explore our portfolio to see the breadth and quality of our work,
+            and get inspired to start your own dream project.
+          </p>
         </div>
       </div>
 
@@ -192,14 +314,27 @@ const Projects = () => {
                   variants={cardVariants}
                   transition={{ delay: index * 0.15, duration: 0.5 }}
                 >
-                  <img src={project.image} alt={project.title} className="h-[200px] w-full object-cover rounded-md" />
-                  <h4 className="text-lg sm:text-xl font-Gothic mt-4">{project.title}</h4>
-                  <p className="text-gray-400 font-sans mt-2 font-extralight line-clamp-2">{project.description}</p>
-                  <p className="text-sm text-gray-400 mt-2 flex font-Gothic items-center">
-                    <FaMapMarkerAlt className="w-4 h-4 mr-1" />{project.location}
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-[200px] w-full object-cover rounded-md"
+                  />
+                  <h4 className="text-lg sm:text-xl font-Gothic mt-4">
+                    {project.title}
+                  </h4>
+                  <p className="text-gray-400 font-sans mt-2 font-extralight line-clamp-2">
+                    {project.description}
                   </p>
-                  <p className="mt-3 inline-block text-xs border border-white text-white px-2 py-[2px] rounded-full">{project.speciality}</p>
-                  <button className="secondary-button mt-5 py-2 rounded-lg">View Property</button>
+                  <p className="text-sm text-gray-400 mt-2 flex font-Gothic items-center">
+                    <FaMapMarkerAlt className="w-4 h-4 mr-1" />
+                    {project.location}
+                  </p>
+                  <p className="mt-3 inline-block text-xs border border-white text-white px-2 py-[2px] rounded-full">
+                    {project.speciality}
+                  </p>
+                  <button className="secondary-button mt-5 py-2 rounded-lg">
+                    View Property
+                  </button>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -209,7 +344,10 @@ const Projects = () => {
         {/* Toggle Button */}
         {displayedProjects.length > 0 && (
           <div className="flex justify-center mt-10">
-            <button onClick={handleToggleProjects} className="px-6 py-3 bg-[#0d0d0d] border border-white/30 text-white hover:bg-[#1a1a1a] transition rounded-lg font-semibold">
+            <button
+              onClick={handleToggleProjects}
+              className="px-6 py-3 bg-[#0d0d0d] border border-white/30 text-white hover:bg-[#1a1a1a] transition rounded-lg font-semibold"
+            >
               {showAll ? "See Less" : "See More"}
             </button>
           </div>

@@ -116,19 +116,20 @@ const ContactForm = () => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full min-h-screen flex items-center justify-center bg-black bg-opacity-90 p-4"
+      className="w-full flex justify-center px-4"
     >
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-5xl"
+        className="w-full max-w-6xl"
       >
+        {/* Heading */}
         <motion.h2
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl sm:text-5xl font-extrabold text-center text-white mb-16 flex flex-col sm:flex-row items-center justify-center gap-4 w-full"
+          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-white mb-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <img
             className="w-12 sm:w-16 h-12 sm:h-16 object-contain"
@@ -138,26 +139,17 @@ const ContactForm = () => {
           <span className="font-Gothic">Have a project in your mind?</span>
         </motion.h2>
 
+        {/* Form */}
         <motion.form
           onSubmit={handleSubmit}
-          className="w-full bg-black bg-opacity-50 backdrop-blur-lg p-6 sm:p-10 rounded-2xl border border-gray-700 shadow-lg"
+          className="w-full bg-black bg-opacity-50 backdrop-blur-lg p-6 sm:p-8 lg:p-12 rounded-2xl border border-gray-700 shadow-xl"
         >
           {/* Row 1 */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6">
-            {[
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+            {[ 
               { label: "Name", icon: <FiUser />, name: "name", type: "text" },
-              {
-                label: "Phone",
-                icon: <FiPhone />,
-                name: "phone",
-                type: "phone",
-              },
-              {
-                label: "Email",
-                icon: <FiMail />,
-                name: "email",
-                type: "email",
-              },
+              { label: "Phone", icon: <FiPhone />, name: "phone", type: "phone" },
+              { label: "Email", icon: <FiMail />, name: "email", type: "email" },
             ].map((field, i) => (
               <motion.div
                 key={field.name}
@@ -170,25 +162,18 @@ const ContactForm = () => {
                   {field.label}
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 pointer-events-none">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
                     {field.icon}
                   </div>
                   {field.type === "phone" ? (
                     <>
-                      <div className="absolute inset-y-0 left-10 pl-2 flex  items-center text-xl pointer-events-none">
+                      <div className="absolute inset-y-0 left-10 pl-2 flex items-center text-xl">
                         {countryFlag}
                       </div>
                       <input
                         ref={phoneRef}
                         type="tel"
                         name="phone"
-                        onBlur={() => {
-                          if (itiRef.current)
-                            setFormData((prev) => ({
-                              ...prev,
-                              phone: itiRef.current.getNumber(),
-                            }));
-                        }}
                         required
                         className="block w-full sm:pl-20 pl-16 pr-3 py-3 bg-gray-800 bg-opacity-40 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                         placeholder="Phone number"
@@ -211,8 +196,8 @@ const ContactForm = () => {
           </div>
 
           {/* Row 2 */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6">
-            {[
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+            {[ 
               {
                 label: "Budget",
                 icon: <FiDollarSign />,
@@ -220,24 +205,13 @@ const ContactForm = () => {
                 type: "select",
                 options: ["", "<$5k", "$5k-$10k", "$10k-$25k", "$25k+"],
               },
-              {
-                label: "Location",
-                icon: <FiMapPin />,
-                name: "location",
-                type: "text",
-              },
+              { label: "Location", icon: <FiMapPin />, name: "location", type: "text" },
               {
                 label: "Service",
                 icon: <FiLayers />,
                 name: "service",
                 type: "select",
-                options: [
-                  "",
-                  "Residential Construction",
-                  "Custom Homes",
-                  "Community Development",
-                  "Renovations",
-                ],
+                options: ["", "Residential Construction", "Custom Homes", "Community Development", "Renovations"],
               },
             ].map((field, i) => (
               <motion.div
@@ -247,13 +221,9 @@ const ContactForm = () => {
                 animate="visible"
                 variants={fieldVariant}
               >
-                <label className="block text-sm text-gray-300 mb-2">
-                  {field.label}
-                </label>
+                <label className="block text-sm text-gray-300 mb-2">{field.label}</label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 pointer-events-none">
-                    {field.icon}
-                  </div>
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">{field.icon}</div>
                   {field.type === "text" ? (
                     <input
                       type="text"
@@ -289,7 +259,7 @@ const ContactForm = () => {
             initial="hidden"
             animate="visible"
             variants={fieldVariant}
-            className="relative mb-6"
+            className="mb-6"
           >
             <label className="block text-sm text-gray-300 mb-2">Message</label>
             <div className="relative">
@@ -313,9 +283,9 @@ const ContactForm = () => {
             initial="hidden"
             animate="visible"
             variants={fieldVariant}
-            className="flex flex-col sm:flex-row items-center justify-between"
+            className="flex flex-col sm:flex-row items-center justify-between gap-4"
           >
-            <label className="flex items-center mb-4 sm:mb-0">
+            <label className="flex items-center">
               <input
                 type="checkbox"
                 name="terms"
@@ -326,20 +296,15 @@ const ContactForm = () => {
               />
               <span className="ml-3 text-gray-300 text-sm">
                 I agree to{" "}
-                <a href="#" className="text-orange-400 hover:text-orange-300">
-                  Terms
-                </a>{" "}
-                and{" "}
-                <a href="#" className="text-orange-400 hover:text-orange-300">
-                  Privacy Policy
-                </a>
+                <a href="#" className="text-orange-400 hover:text-orange-300">Terms</a> and{" "}
+                <a href="#" className="text-orange-400 hover:text-orange-300">Privacy Policy</a>
               </span>
             </label>
 
             <button
               type="submit"
               disabled={isSubmitting || submitSuccess}
-              className={`w-full sm:w-auto mt-4 sm:mt-0 px-8 py-3 rounded-xl font-bold text-white transition-all duration-300 ${
+              className={`w-full sm:w-auto px-8 py-3 rounded-xl font-bold text-white transition-all duration-300 ${
                 isSubmitting || submitSuccess
                   ? "bg-green-600 hover:bg-green-700"
                   : "secondary-button"

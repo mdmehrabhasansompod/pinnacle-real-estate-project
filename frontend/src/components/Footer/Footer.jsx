@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HashLink as Link } from 'react-router-hash-link';
+import { HashLink } from 'react-router-hash-link';
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -32,11 +32,11 @@ const Footer = () => {
     { 
       title: 'Navigation', 
       items: [
-        { label: 'Home', to: '/' },
-        { label: 'Properties', to: '/projects' },
-        { label: 'Testimonials', to: '/testimonials' },
-        { label: "FAQ's", to: '/faq' },
-        { label: 'Terms and Conditions', to: '/terms' }
+        { label: 'Home', to: '/#' },
+        { label: 'Projects', to: '/projects#' },
+        { label: 'About', to: '/about#' },
+        { label: "Services", to: '/services#' },
+        { label: 'Contact', to: '/contact#' }
       ] 
     },
     { 
@@ -48,10 +48,10 @@ const Footer = () => {
       ] 
     },
     { 
-      title: 'Properties', 
+      title: 'Projects', 
       items: [
-        { label: 'Portfolio', to: '/projects#portfolio' },
-        { label: 'Categories', to: '/projects#categories' }
+        { label: 'Search Projects', to: '/projects#search' },
+        { label: 'All Projects', to: '/projects#all-projects' }
       ] 
     },
     { 
@@ -66,8 +66,8 @@ const Footer = () => {
     { 
       title: 'Contact Us', 
       items: [
-        { label: 'Contact Form', to: '/contact' },
-        { label: 'Our Offices', to: '/contact#offices' }
+        { label: 'Contact Form', to: '/contact#form' },
+        { label: 'Get in Touch', to: '/contact#Address' }
       ] 
     },
   ];
@@ -90,8 +90,10 @@ const Footer = () => {
           transition={{ duration: 0.8 }}
           className="flex flex-col gap-8 flex-[1_1_300px] min-w-[280px]"
         >
-          <img src={assets.logo} alt="Pinnacle Logo" className="w-36 sm:w-44" />
-          
+          <HashLink smooth to="/#">
+            <img src={assets.logo} alt="Pinnacle Logo" className="w-36 sm:w-44" />
+          </HashLink>
+
           {/* Email subscription */}
           <form onSubmit={handleEmailSubmit} className="relative w-full max-w-md group">
             <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 transition group-focus-within:text-orange-500" />
@@ -133,7 +135,7 @@ const Footer = () => {
                   transition={{ type: 'spring', stiffness: 300 }}
                   className="cursor-pointer"
                 >
-                  <Link smooth to={item.to}>{item.label}</Link>
+                  <HashLink smooth to={item.to}>{item.label}</HashLink>
                 </motion.li>
               ))}
             </ul>

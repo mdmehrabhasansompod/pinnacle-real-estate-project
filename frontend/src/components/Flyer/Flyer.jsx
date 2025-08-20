@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const Flyer = () => {
   return (
-    <div className="flyer-section relative z-0 bg-[#FF5200] w-[90%] max-w-[1400px] py-16 text-center mt-[100px] mx-auto overflow-hidden rounded-2xl">
+    <div className="flyer-section relative z-0 bg-[#FF5200] w-[90%] max-w-[1400px] py-16 text-center !mt-[8%] mx-auto overflow-hidden rounded-2xl">
 
       {/* Background Vector */}
       <motion.img

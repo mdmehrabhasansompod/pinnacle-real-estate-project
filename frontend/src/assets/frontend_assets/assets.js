@@ -40,6 +40,7 @@ import service2 from "./service2.png"
 import service3 from "./service3.png"
 import serviceContact from "./cb-contact.png"
 import projectPageHeader from "./projectPageHeader.png"
+import contactHero from "./contacthero.png"
 
 
 export const assets = {
@@ -84,7 +85,8 @@ export const assets = {
     service3,
     serviceContact,
     projectPageHeader,
-
+    serviceimg,
+    contactHero,
 
     
 }
@@ -219,7 +221,7 @@ export const projectsData = [
       excerpt: "Discover the latest trends transforming the world of architecture with sustainable designs and smart homes.",
       image: serviceimg,
       date: "July 20, 2025",
-      author: "John Doe"
+      category: "Home Design",
     },
     {
       id: 2,
@@ -227,7 +229,7 @@ export const projectsData = [
       excerpt: "Tips and tricks to help you navigate the real estate market and find a home perfectly suited for you.",
       image: serviceimg,
       date: "July 15, 2025",
-      author: "Jane Smith"
+      category: "Sustainability",
     },
     {
       id: 3,
@@ -235,15 +237,47 @@ export const projectsData = [
       excerpt: "Explore how smart home gadgets can enhance your lifestyle and improve energy efficiency.",
       image: serviceimg,
       date: "July 10, 2025",
-      author: "Emily Johnson"
+      category: "Home Design",
     },
     {
       id: 4,
-      title: "Benefits of Smart Home Technology",
-      excerpt: "Explore how smart home gadgets can enhance your lifestyle and improve energy efficiency.",
+      title: "Renovation Ideas for Small Apartments",
+      excerpt: "Make your small space feel luxurious and functional with these smart renovation ideas.",
       image: serviceimg,
-      date: "July 10, 2025",
-      author: "Emily Johnson"
+      date: "July 5, 2025",
+      category: "Renovation",
+    },
+    {
+      id: 5,
+      title: "Eco-Friendly Construction Materials",
+      excerpt: "Learn about sustainable materials that reduce environmental impact and save energy.",
+      image: serviceimg,
+      date: "June 30, 2025",
+      category: "Sustainability",
+    },
+    {
+      id: 6,
+      title: "Maximizing Space in Tiny Homes",
+      excerpt: "Creative ways to use every inch of your tiny home efficiently without sacrificing style.",
+      image: serviceimg,
+      date: "June 25, 2025",
+      category: "Home Design",
+    },
+    {
+      id: 7,
+      title: "Modern Kitchen Trends 2025",
+      excerpt: "Discover the most popular kitchen designs, colors, and layouts for this year.",
+      image: serviceimg,
+      date: "June 20, 2025",
+      category: "Renovation",
+    },
+    {
+      id: 8,
+      title: "Smart Lighting Solutions for Every Room",
+      excerpt: "Improve comfort and energy efficiency with the latest smart lighting technology.",
+      image: serviceimg,
+      date: "June 15, 2025",
+      category: "Home Design",
     },
   ];
   

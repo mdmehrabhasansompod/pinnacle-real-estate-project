@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
-import { blogsData, assets } from '../../assets/frontend_assets/assets';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { blogsData, assets } from "../../assets/frontend_assets/assets"; // <- import assets
+import { Link } from "react-router-dom";
 
 const LatestNews = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 3;
+  const [index, setIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(2);
 
-  const handleNext = () => {
-    if (currentIndex + itemsPerPage < blogsData.length) {
-      setCurrentIndex(currentIndex + itemsPerPage);
-    }
+  // Responsive visibleCount
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleCount(window.innerWidth < 768 ? 1 : 2);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const totalSlides = Math.max(blogsData.length - visibleCount, 0);
+
+  const nextSlide = () => {
+    if (index < totalSlides) setIndex(index + 1);
   };
 
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - itemsPerPage);
-    }
+  const prevSlide = () => {
+    if (index > 0) setIndex(index - 1);
   };
-
-  const visibleNews = blogsData.slice(currentIndex, currentIndex + itemsPerPage);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -29,89 +35,94 @@ const LatestNews = () => {
   };
 
   return (
-    <div className="news-section w-[90%] max-w-[1200px] mx-auto py-16 mt-[100px] font-Gothic">
-      {/* Header */}
-      <div className="flex flex-wrap items-center mb-10 gap-4">
-        <img src={assets.projectvector} alt="Vector Decoration" className="w-8 md:w-[35px]" />
-        <h2 className="text-3xl md:text-4xl text-white flex-shrink-0">Latest News</h2>
-      </div>
-
-      {/* Description + See All */}
-      <div className="flex flex-col md:flex-row justify-between mb-12 gap-6 items-start md:items-center">
-        <p className="text-gray-400 font-sans max-w-full md:max-w-[600px]">
-          Stay up-to-date with the latest news, insights, and expert advice from the Pinnacle team and the real estate industry.
-        </p>
-        <Link
-          to="/news"
-          className="px-6 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition w-full md:w-auto text-center"
-        >
-          See All News
-        </Link>
-      </div>
-
-     {/* Desktop Grid with Arrows */}
-<div className="hidden md:flex items-center gap-4">
-  <button
-    onClick={handlePrev}
-    disabled={currentIndex === 0}
-    className="p-3 bg-white/20 text-white rounded-full hover:bg-white/40 disabled:opacity-40 transition"
-  >
-    <FaChevronLeft />
-  </button>
-
-  <div className="flex gap-6">
-    {visibleNews.map((news, idx) => (
-      <motion.div
-        key={news.id}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        variants={cardVariants}
-        transition={{ delay: idx * 0.1, duration: 0.5 }}
-        whileHover={{ scale: 1.03, boxShadow: '0 15px 25px rgba(255,255,255,0.1)' }}
-        className="flex-shrink-0 w-[360px] max-w-[360px] flex flex-col p-4 border border-white/20 rounded-lg bg-black text-white"
-      >
+    <div className="w-[90%] lg:w-[80%] mx-auto text-white py-16 font-Gothic">
+      {/* Header with vector */}
+      <div className="flex items-center gap-4 mb-8">
         <img
-          src={news.image}
-          alt={news.title}
-          className="h-[180px] w-full object-cover rounded-md mb-4"
+          src={assets.NewsVector} // <-- your vector image
+          alt="News Vector"
+          className="w-8 md:w-10"
         />
-        <h4 className="text-lg md:text-xl font-Gothic">{news.title}</h4>
-        <p className="text-gray-300 mt-2 line-clamp-3 font-sans font-extralight flex-1">{news.excerpt}</p>
-        <div className="mt-4 flex justify-between items-center">
-          <Link
-            to={`/news/${news.id}`}
-            className="text-orange-400 hover:text-orange-500 underline text-sm"
-          >
-            Read More...
-          </Link>
-          <p className="text-sm text-gray-400 font-sans">{news.date}</p>
+        <h1 className="text-3xl md:text-4xl">Latest News</h1>
+      </div>
+
+      <p className="font-sans font-extralight max-w-2xl mb-8">
+        Stay up-to-date with the latest news, insights, and expert advice from the Pinnacle team and the real estate industry.
+      </p>
+
+      {/* Slider */}
+      <div className="overflow-hidden relative">
+        <motion.div
+          className="flex gap-6"
+          style={{ width: `${(100 / visibleCount) * blogsData.length}%` }}
+          animate={{ x: `-${(100 / blogsData.length) * index}%` }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        >
+          {blogsData.map((news) => (
+            <motion.div
+              key={news.id}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={cardVariants}
+              className="flex-shrink-0"
+              style={{ width: `${100 / blogsData.length}%` }}
+            >
+              <div className="bg-gray-900 rounded-xl shadow-lg p-4 h-full flex flex-col">
+                <img
+                  src={news.image}
+                  alt={news.title}
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
+                <p className="border border-amber-50 px-3 py-1 w-fit text-sm mb-2">
+                  {news.category} | {news.date}
+                </p>
+                <h3 className="font-Gothic text-lg md:text-xl mb-2">{news.title}</h3>
+                <p className="font-sans font-extralight text-sm leading-relaxed flex-1">
+                  {news.excerpt}
+                </p>
+                <Link
+                  to={`/news/${news.id}`}
+                  className="mt-4 text-orange-400 hover:text-orange-500 underline text-sm"
+                >
+                  Read More...
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Navigation */}
+        <div className="flex justify-between items-center mt-6">
+          <p className="text-sm font-light">{index + 1}/{totalSlides + 1}</p>
+          <div className="flex gap-3">
+            <button
+              onClick={prevSlide}
+              disabled={index === 0}
+              className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 disabled:opacity-30"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={nextSlide}
+              disabled={index >= totalSlides}
+              className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 disabled:opacity-30"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
-      </motion.div>
-    ))}
-  </div>
+      </div>
 
-  <button
-    onClick={handleNext}
-    disabled={currentIndex + itemsPerPage >= blogsData.length}
-    className="p-3 bg-white/20 text-white rounded-full hover:bg-white/40 disabled:opacity-40 transition"
-  >
-    <FaChevronRight />
-  </button>
-</div>
-
-
-      {/* Mobile Horizontal Scroll */}
-      <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth mt-4">
-        {blogsData.map((news, idx) => (
+      {/* Mobile Scroll */}
+      <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth mt-6">
+        {blogsData.map((news) => (
           <motion.div
             key={news.id}
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={cardVariants}
-            transition={{ delay: idx * 0.05, duration: 0.5 }}
-            whileHover={{ scale: 1.03, boxShadow: '0 15px 25px rgba(255,255,255,0.1)' }}
             className="snap-start flex-shrink-0 w-[280px] flex flex-col p-4 border border-white/20 rounded-lg bg-black text-white cursor-pointer"
           >
             <img
@@ -119,17 +130,19 @@ const LatestNews = () => {
               alt={news.title}
               className="h-[180px] w-full object-cover rounded-md mb-4"
             />
-            <h4 className="text-lg md:text-xl font-Gothic">{news.title}</h4>
-            <p className="text-gray-300 mt-2 line-clamp-3 font-sans font-extralight flex-1">{news.excerpt}</p>
-            <div className="mt-4 flex justify-between items-center">
-              <Link
-                to={`/news/${news.id}`}
-                className="text-orange-400 hover:text-orange-500 underline text-sm"
-              >
-                Read More...
-              </Link>
-              <p className="text-sm text-gray-400 font-sans">{news.date}</p>
-            </div>
+            <p className="border border-amber-50 px-3 py-1 w-fit text-sm mb-2">
+              {news.category} | {news.date}
+            </p>
+            <h3 className="font-Gothic text-lg md:text-xl mb-2">{news.title}</h3>
+            <p className="font-sans font-extralight text-sm leading-relaxed flex-1">
+              {news.excerpt}
+            </p>
+            <Link
+              to={`/news/${news.id}`}
+              className="mt-4 text-orange-400 hover:text-orange-500 underline text-sm"
+            >
+              Read More...
+            </Link>
           </motion.div>
         ))}
       </div>
@@ -138,4 +151,3 @@ const LatestNews = () => {
 };
 
 export default LatestNews;
-
