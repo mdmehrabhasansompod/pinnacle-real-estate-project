@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+  
 // middlewares
 app.use(cors({
     origin: process.env.CORS_ORIGIN || "*", // fallback if env missing
@@ -15,8 +16,15 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
+
+
 // routes
 import projectRouter from "./routes/project.routers.js";
+import newsletterRouter from "./routes/newsletter.routes.js";
+import serviceRouter from "./routes/service.routers.js";
+import newsRouter from "./routes/news.routers.js";
+import contactRouter from "./routes/contact.routers.js";
+import teamRouter from "./routes/team.routers.js";
 
 // base route
 app.get("/", (req, res) => {
@@ -25,6 +33,11 @@ app.get("/", (req, res) => {
 
 // api routes
 app.use("/api/projects", projectRouter);
+app.use("/api/newsletter", newsletterRouter);
+app.use("/api/services", serviceRouter);
+app.use("/api/news", newsRouter);
+app.use("/api/contact", contactRouter);
+app.use("/api/team", teamRouter);
 
 export { app };
 
