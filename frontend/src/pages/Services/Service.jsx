@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { assets } from "../../assets/frontend_assets/assets";
 import { Link } from "react-router-dom";
-import LetsBuild from "../../components/Letsbuild/LetsBuild";
+import LetsBuild from "../../components/Letsbuild/Letsbuild";
 import ContactForm from "../../components/contactForm/contactForm";
 import axios from "axios";
 import { API_BASE_URL } from "../../config/constants";

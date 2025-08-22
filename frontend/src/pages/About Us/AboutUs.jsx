@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { assets } from "../../assets/frontend_assets/assets";
 import { ClientsReview } from "../../components/ClientsReview/ClientsReview";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import LetsBuild from "../../components/Letsbuild/LetsBuild";
+import LetsBuild from "../../components/Letsbuild/Letsbuild";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { API_BASE_URL } from "../../config/constants"; // Make sure this points to your backend base URL
