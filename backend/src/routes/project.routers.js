@@ -7,12 +7,14 @@ import {
   deleteProject,
 } from "../controllers/project.controllers.js";
 
+import upload from "../middlewares/multer.js"; // ✅ Multer middleware
+
 const router = express.Router();
 
-router.get("/", getProjects);           // GET all projects
-router.post("/", createProject);        // POST create new project
-router.get("/:id", getProjectById);     // GET project by ID
-router.put("/:id", updateProject);      // PUT update project
-router.delete("/:id", deleteProject);   // DELETE project
+router.get("/", getProjects);
+router.post("/", upload.single("image"), createProject); // ✅ handle image
+router.get("/:id", getProjectById);
+router.put("/:id", upload.single("image"), updateProject); // ✅ handle image
+router.delete("/:id", deleteProject);
 
 export default router;

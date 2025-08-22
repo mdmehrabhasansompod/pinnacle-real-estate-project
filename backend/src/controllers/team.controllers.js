@@ -1,74 +1,84 @@
-import {TeamMember} from "../models/team.models.js";
+import { Team } from "../models/team.models.js";
+import { uploadOnCloudinary, deleteFromCloudinary } from "../utils/cloudinary.js";
 
-// ✅ Add new team member
-export const createTeamMember = async (req, res) => {
+// ✅ Create team member
+export const createTeam = async (req, res) => {
   try {
-    const { name, role, image, description } = req.body;
+    const { name, position, bio } = req.body;
+    let imageUrl = "";
 
-    if (!name || !role || !image || !description) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (req.file) {
+      const result = await uploadOnCloudinary(req.file.path, {
+        folder: "pinnacle-real-estate-app",
+      });
+      imageUrl = result.secure_url;
     }
 
-    const member = new TeamMember({ name, role, image, description });
-    await member.save();
-
-    res.status(201).json({ message: "Team member added", member });
+    const team = new Team({ name, position, bio, image: imageUrl });
+    await team.save();
+    res.status(201).json(team);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
 // ✅ Get all team members
-export const getTeamMembers = async (req, res) => {
+export const getTeams = async (req, res) => {
   try {
-    const members = await TeamMember.find();
-    res.json(members);
+    const teams = await Team.find();
+    res.json(teams);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
-// ✅ Get single team member by ID
-export const getTeamMemberById = async (req, res) => {
+// ✅ Get single team member
+export const getTeamById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const member = await TeamMember.findById(id);
-
-    if (!member) return res.status(404).json({ message: "Team member not found" });
-
-    res.json(member);
+    const team = await Team.findById(req.params.id);
+    if (!team) return res.status(404).json({ message: "Team member not found" });
+    res.json(team);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
-// ✅ Update team member by ID
-export const updateTeamMember = async (req, res) => {
+// ✅ Update team member
+export const updateTeam = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { name, role, image, description } = req.body;
+    const { name, position, bio } = req.body;
+    let imageUrl = req.body.image || "";
 
-    const updated = await TeamMember.findByIdAndUpdate(
-      id,
-      { name, role, image, description },
+    if (req.file) {
+      const result = await uploadOnCloudinary(req.file.path, {
+        folder: "pinnacle-real-estate-app",
+      });
+      imageUrl = result.secure_url;
+    }
+
+    const updated = await Team.findByIdAndUpdate(
+      req.params.id,
+      { name, position, bio, image: imageUrl },
       { new: true }
     );
 
     if (!updated) return res.status(404).json({ message: "Team member not found" });
-
-    res.json({ message: "Team member updated", member: updated });
+    res.json({ message: "Team member updated", team: updated });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
-// ✅ Delete team member by ID
-export const deleteTeamMember = async (req, res) => {
+// ✅ Delete team member
+export const deleteTeam = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    const deleted = await TeamMember.findByIdAndDelete(id);
+    const deleted = await Team.findByIdAndDelete(req.params.id);
     if (!deleted) return res.status(404).json({ message: "Team member not found" });
+
+    if (deleted.image) {
+      const publicId = deleted.image.split("/").pop().split(".")[0];
+      await deleteFromCloudinary(publicId);
+    }
 
     res.json({ message: "Team member deleted successfully" });
   } catch (err) {

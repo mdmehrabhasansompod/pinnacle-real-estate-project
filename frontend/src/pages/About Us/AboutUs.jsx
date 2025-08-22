@@ -1,49 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { assets } from "../../assets/frontend_assets/assets";
 import { ClientsReview } from "../../components/ClientsReview/ClientsReview";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import Flyer from "../../components/Flyer/Flyer";
-import LetsBuild from "../../components/Letsbuild/Letsbuild";
+import LetsBuild from "../../components/Letsbuild/LetsBuild";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { API_BASE_URL } from "../../config/constants"; // Make sure this points to your backend base URL
 
 const AboutUs = () => {
-  const teamData = [
-    {
-      id: 1,
-      name: "John Doe",
-      role: "Founder and CEO",
-      image: assets.ceoIMG,
-      description:
-        "With over 20 years of experience in the construction and real estate industry, he has built a reputation for his unwavering commitment to quality and innovation. ",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      role: "VP of Operations",
-      image: assets.tm2,
-      description:
-        "Jane Smith is the driving force behind Pinnacle's day-to-day operations.Her ability to navigate complex challenges and find creative solutions has been instrumental in our growth.",
-    },
-    {
-      id: 3,
-      name: "Michael Johnson",
-      role: "Director of Design",
-      image: assets.tm3,
-      description:
-        "He has a unique ability to transform even the most ambitious visions into reality. His innovative approach and attention to detail have earned him the respect of our clients.",
-    },
-    {
-      id: 4,
-      name: "Emily Davis",
-      role: "Marketing Manager",
-      image: assets.tm4,
-      description:
-        "Emily drives our marketing efforts, connecting with clients and promoting our vision.",
-    },
-  ];
-
+  const [teamData, setTeamData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 3;
+
+  // Fetch team members from backend
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/team`);
+        setTeamData(response.data);
+      } catch (error) {
+        console.error("Error fetching team data:", error);
+      }
+    };
+    fetchTeam();
+  }, []);
 
   const handleNext = () => {
     if (currentIndex + itemsPerPage < teamData.length) {
@@ -57,10 +37,7 @@ const AboutUs = () => {
     }
   };
 
-  const visibleTeam = teamData.slice(
-    currentIndex,
-    currentIndex + itemsPerPage
-  );
+  const visibleTeam = teamData.slice(currentIndex, currentIndex + itemsPerPage);
 
   return (
     <div className="text-white">
@@ -97,7 +74,8 @@ const AboutUs = () => {
       </motion.div>
 
       {/* Story Section */}
-      <motion.div id="story"
+      <motion.div
+        id="story"
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
@@ -188,27 +166,22 @@ const AboutUs = () => {
               className="p-6 border border-white/20 rounded-lg bg-black text-white hover:scale-105 hover:shadow-xl transition-transform duration-500 ease-in-out"
             >
               <img
-                src={member.image}
+                src={member.image || assets.ceoIMG}
                 alt={member.name}
                 className="h-48 w-48 sm:h-52 sm:w-52 object-cover rounded-full mx-auto"
               />
               <h4 className="text-xl font-Gothic mt-4 text-center">{member.name}</h4>
-              <p className="text-gray-300 mt-1 font-sans text-center">{member.role}</p>
-              <p className="text-gray-400 font-sans text-sm mt-3 text-center leading-6">
-                {member.description}
-              </p>
+              <p className="text-gray-300 mt-1 font-sans text-center">{member.position}</p>
+              <p className="text-gray-400 font-sans text-sm mt-3 text-center leading-6">{member.bio}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Carousel Controls */}
         <div className="flex justify-between items-center mt-6">
-          {/* Left bottom: current / total */}
           <p className="text-gray-400 font-sans text-sm">
             {Math.min(currentIndex + itemsPerPage, teamData.length)} / {teamData.length}
           </p>
-
-          {/* Right bottom: arrows */}
           <div className="flex gap-4">
             <button
               onClick={handlePrev}

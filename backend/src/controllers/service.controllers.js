@@ -1,19 +1,22 @@
 import {Service} from "../models/service.models.js";
+import {uploadOnCloudinary} from "../utils/cloudinary.js";
 
-// ✅ Create new service
 export const createService = async (req, res) => {
   try {
-    const { title, description, image, category } = req.body;
+    const { title, description, category } = req.body;
+    let imageUrl = "";
 
-    if (!title || !description || !image || !category) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (req.file) {
+      const result = await uploadOnCloudinary(req.file.path,{ folder: "pinnacle-real-estate-app",});
+      imageUrl = result.secure_url;
     }
 
-    const newService = new Service({ title, description, image, category });
-    await newService.save();
+    const service = new Service({ title, description, category, image: imageUrl });
+    await service.save();
 
-    res.status(201).json({ message: "Service created", service: newService });
+    res.status(201).json(service);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -44,27 +47,35 @@ export const getServiceById = async (req, res) => {
   }
 };
 
-// ✅ Update service by ID
+// ✅ Update service
 export const updateService = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, image, category } = req.body;
+    const { title, description, category } = req.body;
+
+    let imageUrl = req.body.image || "";
+
+    if (req.file) {
+      const result = await uploadOnCloudinary(req.file.path, {
+        folder: "pinnacle-real-estate-app",}
+);
+      imageUrl = result.secure_url;
+    }
 
     const updated = await Service.findByIdAndUpdate(
       id,
-      { title, description, image, category },
+      { title, description, category, image: imageUrl },
       { new: true }
     );
 
-    if (!updated) {
-      return res.status(404).json({ message: "Service not found" });
-    }
+    if (!updated) return res.status(404).json({ message: "Service not found" });
 
     res.json({ message: "Service updated", service: updated });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 // ✅ Delete service by ID
 export const deleteService = async (req, res) => {

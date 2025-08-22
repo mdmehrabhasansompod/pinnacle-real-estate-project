@@ -6,47 +6,48 @@ export const ClientsReview = () => {
   const clientReviews = [
     {
       id: 1,
-      name: 'Sophia Lee',
+      name: 'Sophia Martinez',
       title: 'CEO, Nova Designs',
       image: assets.Client1,
-      message: `"Pinnacle's attention to detail and commitment to excellence is unparalleled. Their team is professional, courteous, and always willing to go the extra mile."`,
+      message: `"Working with Pinnacle has been an absolute pleasure. Their attention to detail, professionalism, and dedication to delivering quality exceeded all our expectations. They truly bring our visions to life."`,
     },
     {
       id: 2,
-      name: 'Michael Thompson',
-      title: 'Director, Thompson Realty',
+      name: 'David Reynolds',
+      title: 'Director, Horizon Realty',
       image: assets.Client2,
-      message: `"They truly transformed our vision into reality. From start to finish, the Pinnacle team was incredible to work with."`,
+      message: `"From the initial consultation to the final handover, Pinnacle demonstrated unmatched expertise. Their team is highly responsive, innovative, and committed to excellence in every project."`,
     },
     {
       id: 3,
-      name: 'Emily J. Smith',
-      title: 'Owner, Smith & Co.',
+      name: 'Emily J. Parker',
+      title: 'Owner, Parker & Co.',
       image: assets.Client3,
-      message: `"Exceptional craftsmanship and attention to our needs. Highly recommend Pinnacle for any project, big or small."`,
+      message: `"We were amazed by Pinnacle’s ability to understand our needs and execute with precision. The quality of craftsmanship and attention to detail is exceptional. Highly recommend them for any project, big or small."`,
     },
     {
       id: 4,
-      name: 'Liam Carter',
+      name: 'Liam Henderson',
       title: 'Manager, Carter & Sons',
       image: assets.Client4,
-      message: `"They were reliable, professional, and efficient. A team you can trust without hesitation."`,
+      message: `"Pinnacle’s team is reliable, efficient, and extremely professional. They guided us through every step of the project, ensuring our expectations were met and exceeded. Truly a partner you can trust."`,
     },
     {
       id: 5,
-      name: 'Michael Thompson',
-      title: 'Director, Thompson Realty',
-      image: assets.Client2,
-      message: `"They truly transformed our vision into reality. From start to finish, the Pinnacle team was incredible to work with."`,
+      name: 'Isabella Nguyen',
+      title: 'Founder, Urban Living',
+      image: assets.Client5,
+      message: `"Their innovative approach and commitment to excellence are unparalleled. Pinnacle transformed our ideas into reality seamlessly, delivering results that are both stunning and functional. We couldn’t be happier."`,
     },
     {
       id: 6,
-      name: 'Liam Carter',
-      title: 'Manager, Carter & Sons',
-      image: assets.Client4,
-      message: `"They were reliable, professional, and efficient. A team you can trust without hesitation."`,
+      name: 'Ethan Wallace',
+      title: 'CEO, Wallace Developments',
+      image: assets.Client6,
+      message: `"Working with Pinnacle was a game-changer for our business. Their professionalism, expertise, and dedication ensured a smooth process from start to finish. The final outcome surpassed all expectations."`,
     },
   ];
+  
 
   return (
     <div className="mt-24 mx-auto w-[90%] max-w-[1300px] leading-8 font-sans">

@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
-import { assets, serviceCategories } from '../../assets/frontend_assets/assets';
+import React, { useState, useEffect } from 'react';
+import { assets } from '../../assets/frontend_assets/assets';
 import { motion, AnimatePresence } from 'framer-motion';
+import axios from 'axios';
+import { API_BASE_URL } from '../../config/constants';
+import { useNavigate } from 'react-router-dom';
 
 const ExploreService = () => {
-  const [activeCategory, setActiveCategory] = useState(serviceCategories[0]);
+  const [services, setServices] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [activeCategory, setActiveCategory] = useState(null);
+  const navigate = useNavigate(); // For redirection
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -12,8 +18,34 @@ const ExploreService = () => {
       y: 0,
       transition: { delay: i * 0.1, duration: 0.5, ease: 'easeOut' },
     }),
-    hover: { scale: 1.03, boxShadow: '0 15px 25px rgba(255,255,255,0.1)', transition: { duration: 0.3 } },
+    hover: {
+      scale: 1.03,
+      boxShadow: '0 15px 25px rgba(255,255,255,0.1)',
+      transition: { duration: 0.3 },
+    },
   };
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/services`);
+        setServices(response.data);
+
+        const uniqueCategories = [...new Set(response.data.map(s => s.category))];
+        setCategories(uniqueCategories);
+
+        if (uniqueCategories.length > 0) setActiveCategory(uniqueCategories[0]);
+      } catch (error) {
+        console.error('Error fetching services:', error);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+  if (!activeCategory) return null;
+
+  const filteredServices = services.filter(s => s.category === activeCategory);
 
   return (
     <div className="w-[90%] max-w-[1312px] mx-auto py-16 font-Gothic">
@@ -31,18 +63,18 @@ const ExploreService = () => {
 
       {/* Category Tabs */}
       <div className="flex flex-wrap justify-center gap-4 mb-12">
-        {serviceCategories.map((cat, idx) => (
+        {categories.map((cat, idx) => (
           <motion.button
             key={idx}
             onClick={() => setActiveCategory(cat)}
             className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-              activeCategory.category === cat.category
+              activeCategory === cat
                 ? 'bg-orange-500 text-white shadow-md'
                 : 'bg-black text-gray-400 border border-gray-700 hover:bg-orange-100 hover:text-black'
             }`}
             whileHover={{ scale: 1.05 }}
           >
-            {cat.category}
+            {cat}
           </motion.button>
         ))}
       </div>
@@ -50,7 +82,7 @@ const ExploreService = () => {
       {/* Services Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <AnimatePresence initial={false}>
-          {activeCategory.services.map((service, idx) => (
+          {filteredServices.map((service, idx) => (
             <motion.div
               key={service.id}
               className="bg-[#121212] border border-white/20 rounded-xl p-5 flex flex-col justify-between text-white cursor-pointer hover:shadow-lg hover:border-white/40 transition-all duration-300"
@@ -73,8 +105,11 @@ const ExploreService = () => {
                 <h4 className="text-lg font-semibold">{service.title}</h4>
                 <p className="text-gray-400 text-sm mt-2 font-sans font-extralight line-clamp-3">{service.description}</p>
               </div>
-              <button className="mt-4 text-orange-400 cursor-pointer underline hover:text-orange-500 text-sm text-left">
-                Learn More
+              <button
+                onClick={() => navigate('/contact#contactForm')}
+                className="mt-4 secondary-button text-white font-semibold py-2 px-4 rounded text-sm transition-colors"
+              >
+                Schedule a Call
               </button>
             </motion.div>
           ))}
@@ -85,6 +120,5 @@ const ExploreService = () => {
 };
 
 export default ExploreService;
-
 
 

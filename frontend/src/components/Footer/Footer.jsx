@@ -3,69 +3,72 @@ import { HashLink } from 'react-router-hash-link';
 import {
   FaFacebookF,
   FaLinkedinIn,
-  FaTwitter,
   FaYoutube,
   FaEnvelope,
   FaPaperPlane,
 } from 'react-icons/fa';
+import { FaXTwitter } from "react-icons/fa6";
 import { assets } from '../../assets/frontend_assets/assets';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState(null);
 
-  const handleEmailSubmit = (e) => {
+  // --- subscription functionality with proper backend URL ---
+  const handleEmailSubmit = async (e) => {
     e.preventDefault();
-    if (!email) {
-      setStatus('Please enter a valid email.');
+
+    if (!email.trim()) {
+      setStatus({ type: 'error', message: 'Please enter a valid email.' });
       return;
     }
-    // Replace this with your backend API call or mailing service
-    console.log('Email submitted:', email);
-    setStatus(`Thank you! We'll keep you updated.`);
-    setEmail('');
-    setTimeout(() => setStatus(null), 4000);
+
+    try {
+      const res = await axios.post('http://localhost:8000/api/newsletters/subscribe', { email });
+      setStatus({ type: 'success', message: res.data.message || 'Subscribed successfully!' });
+      setEmail('');
+    } catch (err) {
+      setStatus({
+        type: 'error',
+        message: err.response?.data?.message || 'Failed to subscribe. Try again.',
+      });
+    }
+
+    setTimeout(() => setStatus(null), 4000); // auto-clear message
   };
 
+  // --- footer menus remain unchanged ---
   const menus = [
-    { 
-      title: 'Navigation', 
-      items: [
+    { title: 'Navigation', items: [
         { label: 'Home', to: '/#' },
         { label: 'Projects', to: '/projects#' },
         { label: 'About', to: '/about#' },
-        { label: "Services", to: '/services#' },
+        { label: 'Privacy Policy', to: '/privacy-policy#' },
+        { label: 'Services', to: '/services#' },
         { label: 'Contact', to: '/contact#' }
       ] 
     },
-    { 
-      title: 'About Us', 
-      items: [
+    { title: 'About Us', items: [
         { label: 'Our Story', to: '/about#story' },
         { label: 'Our Values', to: '/about#values' },
         { label: 'Our Team', to: '/about#team' }
       ] 
     },
-    { 
-      title: 'Projects', 
-      items: [
+    { title: 'Projects', items: [
         { label: 'Search Projects', to: '/projects#search' },
         { label: 'All Projects', to: '/projects#all-projects' }
       ] 
     },
-    { 
-      title: 'Services', 
-      items: [
+    { title: 'Services', items: [
         { label: 'Residential Construction', to: '/services#residential' },
         { label: 'Commercial Construction', to: '/services#commercial' },
         { label: 'Property Management', to: '/services#management' },
         { label: 'Development Services', to: '/services#development' }
       ] 
     },
-    { 
-      title: 'Contact Us', 
-      items: [
+    { title: 'Contact Us', items: [
         { label: 'Contact Form', to: '/contact#form' },
         { label: 'Get in Touch', to: '/contact#Address' }
       ] 
@@ -102,7 +105,7 @@ const Footer = () => {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full pl-10 pr-12 py-2 rounded-md text-black font-Gothic placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
+              className="w-full pl-10 pr-12 py-2 rounded-md text-white font-Gothic placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
               required
             />
             <button
@@ -113,7 +116,12 @@ const Footer = () => {
               <FaPaperPlane />
             </button>
           </form>
-          {status && <p className="text-sm text-green-400 mt-2">{status}</p>}
+
+          {status && (
+            <p className={`text-sm mt-2 ${status.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+              {status.message}
+            </p>
+          )}
         </motion.div>
 
         {/* Footer Menus */}
@@ -149,7 +157,7 @@ const Footer = () => {
         <div className="flex gap-6 text-white text-xl">
           {[{ icon: FaFacebookF, label: 'Facebook' },
             { icon: FaLinkedinIn, label: 'LinkedIn' },
-            { icon: FaTwitter, label: 'Twitter' },
+            { icon: FaXTwitter, label: 'Twitter' },
             { icon: FaYoutube, label: 'YouTube' }
           ].map(({ icon: Icon, label }, i) => (
             <motion.a

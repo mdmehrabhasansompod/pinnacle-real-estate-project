@@ -1,14 +1,17 @@
+// routers/newsletter.routers.js
 import express from "express";
-import {
-  subscribeNewsletter,
-  getSubscribers,
-  unsubscribeNewsletter,
-} from "../controllers/newsletter.controllers.js";
+import { subscribe, getAllEmails, deleteEmail, broadcastEmail,sendToOneSubscriber } from "../controllers/newsletter.controllers.js";
 
 const router = express.Router();
 
-router.post("/subscribe", subscribeNewsletter);    // POST - add new subscriber
-router.get("/", getSubscribers);                   // GET - list all subscribers
-router.post("/unsubscribe", unsubscribeNewsletter); // POST - unsubscribe
+// Public subscription (footer form)
+router.post("/subscribe", subscribe);
+
+// Admin routes
+router.get("/", getAllEmails); // fetch all emails
+router.delete("/:id", deleteEmail); // remove email
+router.post("/broadcast", broadcastEmail); // send email to all subscribers
+router.post("/send/:id", sendToOneSubscriber);
+
 
 export default router;

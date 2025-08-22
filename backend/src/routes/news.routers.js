@@ -1,18 +1,20 @@
 import express from "express";
+import upload from "../middlewares/multer.js"; // Multer middleware
+
 import {
-  createNews,
   getNews,
   getNewsById,
+  createNews,
   updateNews,
   deleteNews,
 } from "../controllers/news.controllers.js";
 
 const router = express.Router();
 
-router.post("/", createNews);        // Create news
-router.get("/", getNews);            // Get all news
-router.get("/:id", getNewsById);     // Get single news
-router.put("/:id", updateNews);      // Update news
-router.delete("/:id", deleteNews);   // Delete news
+router.get("/", getNews);
+router.get("/:id", getNewsById);
+router.post("/", upload.single("image"), createNews); // image required
+router.put("/:id", upload.single("image"), updateNews); // image optional
+router.delete("/:id", deleteNews);
 
 export default router;

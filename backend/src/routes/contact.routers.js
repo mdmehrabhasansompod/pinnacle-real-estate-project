@@ -1,15 +1,23 @@
 import express from "express";
-import { submitContactForm, getAllContacts, deleteContact } from "../controllers/contact.controllers.js";
+import {
+  createContact,
+  getContacts,
+  getContactById,
+  deleteContact,
+} from "../controllers/contact.controllers.js";
 
 const router = express.Router();
 
-// POST: submit contact form
-router.post("/", submitContactForm);
+// POST (frontend form submission)
+router.post("/", createContact);
 
-// GET: get all submitted contacts
-router.get("/", getAllContacts);
+// GET all contacts (admin)
+router.get("/", getContacts);
 
-// DELETE: delete contact by ID
+// GET single contact (optional)
+router.get("/:id", getContactById);
+
+// DELETE contact (admin)
 router.delete("/:id", deleteContact);
 
 export default router;
