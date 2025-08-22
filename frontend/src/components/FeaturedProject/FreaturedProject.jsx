@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaMapMarkerAlt, FaDollarSign } from "react-icons/fa";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import {Link} from "react-router-dom"
 import { assets } from "../../assets/frontend_assets/assets";
 import axios from "axios";
 import { API_BASE_URL } from "../../config/constants";
@@ -110,9 +111,9 @@ const ProjectsPreview = () => {
                 <p className="mt-3 inline-block text-xs border border-white text-white px-2 py-[2px] rounded-full">
                   {project.type}
                 </p>
-                <button className="secondary-button !px-[80px] mt-5 mx-auto block">
-                  View Property
-                </button>
+                <Link to="/projects/#"><button className="secondary-button !px-[80px] mt-5 mx-auto block">
+                  Explore Property
+                </button></Link> 
               </motion.div>
             ))}
           </motion.div>

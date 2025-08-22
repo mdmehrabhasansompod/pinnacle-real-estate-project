@@ -106,7 +106,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-gray-900 to-black">
+    <div id="contactForm" className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-gray-900 to-black">
       <motion.div 
         className="w-full max-w-3xl" // Form now takes reasonable full width
         initial={{ opacity: 0, y: 20 }}

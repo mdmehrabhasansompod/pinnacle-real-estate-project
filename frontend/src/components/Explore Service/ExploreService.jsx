@@ -106,7 +106,7 @@ const ExploreService = () => {
                 <p className="text-gray-400 text-sm mt-2 font-sans font-extralight line-clamp-3">{service.description}</p>
               </div>
               <button
-                onClick={() => navigate('/contact#contactForm')}
+                onClick={() => navigate('/contact##contactForm')}
                 className="mt-4 secondary-button text-white font-semibold py-2 px-4 rounded text-sm transition-colors"
               >
                 Schedule a Call

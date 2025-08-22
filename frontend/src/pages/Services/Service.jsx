@@ -136,7 +136,7 @@ const Service = () => {
                   </p>
                   <motion.div whileHover={buttonHover}>
                     <Link
-                      to="/services#contact"
+                      to="/contact##contactForm"
                       className="secondary-button mt-auto self-start w-full sm:w-auto text-center"
                     >
                       Schedule a Call
