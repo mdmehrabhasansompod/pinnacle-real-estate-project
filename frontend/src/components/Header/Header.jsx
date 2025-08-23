@@ -69,7 +69,7 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
         >
-          <button className="primary-button w-full sm:w-auto">Schedule a Call</button>
+          <Link to="/contact##contactForm"><button className="primary-button w-full sm:w-auto">Schedule a Call</button></Link>
           <Link to="/projects" className="secondary-button w-full sm:w-auto text-center">
             View Our Projects
           </Link>
