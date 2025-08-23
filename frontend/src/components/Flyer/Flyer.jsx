@@ -37,7 +37,8 @@ const Flyer = () => {
       </motion.p>
 
       {/* Button */}
-      <motion.button
+     <Link to="/about">
+     <motion.button
         className="px-6 py-3 text-white bg-black mt-8 font-sans rounded-md hover:bg-gray-900 z-10 relative transition duration-300"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -46,6 +47,7 @@ const Flyer = () => {
       >
         Learn More About Us...
       </motion.button>
+     </Link> 
 
       {/* Decorative Buildings */}
       <motion.img
