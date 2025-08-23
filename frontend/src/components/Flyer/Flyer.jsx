@@ -1,5 +1,6 @@
 import React from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
+import {Link} from "react-router-dom"
 import { motion } from 'framer-motion';
 
 const Flyer = () => {
