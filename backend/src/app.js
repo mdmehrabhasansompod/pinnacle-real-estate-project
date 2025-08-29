@@ -10,6 +10,7 @@ const app = express();
 app.use(cors({
     origin: process.env.CORS_ORIGIN || "*", // fallback if env missing
     credentials: true,
+  
 }));
 
 
