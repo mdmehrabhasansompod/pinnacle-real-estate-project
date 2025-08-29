@@ -1,2 +1,2 @@
 
-export const baseApi = "http://localhost:8000/api";  
+export const baseApi = "https://pinnacle-real-estate-project.onrender.com/api";  
