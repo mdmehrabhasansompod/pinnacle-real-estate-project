@@ -198,7 +198,7 @@ const Newsletter = () => {
             >
               <td className="border p-2">{sub.email}</td>
               <td className="border p-2">
-                {sub.subscribedAt ? new Date(sub.subscribedAt).toLocaleString() : "N/A"}
+                {sub.createdAt ? new Date(sub.createdAt).toLocaleString() : "N/A"}
               </td>
               <td className="border p-2 text-center flex gap-3 justify-center">
                 <button
