@@ -7,12 +7,16 @@ const app = express();
 
   
 // middlewares
-app.use(cors({
-    origin: process.env.CORS_ORIGIN || "*", // fallback if env missing
-    methods:["GET","POST"],
-    credentials: true,
-  
-}));
+app.use(
+    cors({
+      origin: [
+        process.env.CORS_ORIGIN || "https://https://pinnacle-real-estate-project.vercel.app"
+      ],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true,
+      allowedHeaders: ["Content-Type", "Authorization"],
+    })
+  );
 
 
 app.use(express.json({ limit: "16kb" }));
