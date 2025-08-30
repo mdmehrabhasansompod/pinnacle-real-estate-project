@@ -6,7 +6,7 @@ import cors from "cors"; // ✅ import cors
 const app = express();
 
 // 🔥 Use CORS middleware
-const allowedOrigin = ["https://pinnacle-real-estate-project.vercel.app","http://localhost:8000"];
+const allowedOrigin = ["https://pinnacle-real-estate-project.vercel.app","http://localhost:5000"];
 app.use(
   cors({
     origin: allowedOrigin,
