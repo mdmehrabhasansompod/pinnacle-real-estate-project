@@ -10,7 +10,7 @@ const app = express();
 app.use(
     cors({
       origin: [
-        process.env.CORS_ORIGIN || "https://https://pinnacle-real-estate-project.vercel.app"
+        process.env.CORS_ORIGIN || "https://pinnacle-real-estate-project.vercel.app"
       ],
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
