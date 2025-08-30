@@ -11,6 +11,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { assets } from '../../assets/frontend_assets/assets';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config/constants.js';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -26,7 +27,7 @@ const Footer = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:8000/api/newsletters/subscribe', { email });
+      const res = await axios.post(`${API_BASE_URL}/newsletters/subscribe`, { email });
       setStatus({ type: 'success', message: res.data.message || 'Subscribed successfully!' });
       setEmail('');
     } catch (err) {

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import LetsBuild from "../../components/Letsbuild/Letsbuild";
 import ContactForm from "../../components/contactForm/contactForm";
 import axios from "axios";
-import { API_BASE_URL } from "../../config/constants";
+import { API_BASE_URL } from "../../config/constants.js";
 
 const Service = () => {
   const [services, setServices] = useState([]);

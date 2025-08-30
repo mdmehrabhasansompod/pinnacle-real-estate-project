@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { assets } from "../../assets/frontend_assets/assets.js";
+import { API_BASE_URL } from "../../config/constants.js";
 import {
   FiUser,
   FiPhone,
@@ -58,7 +59,7 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post("http://localhost:8000/api/contacts", formData, {
+      await axios.post(`${API_BASE_URL}/contacts`, formData, {
         headers: { "Content-Type": "application/json" },
       });
       setSubmitSuccess(true);
