@@ -19,6 +19,23 @@ app.use(
   );
 
 
+  // Force add headers for all responses
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://pinnacle-real-estate-project.vercel.app");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+  
+    if (req.method === "OPTIONS") {
+      return res.sendStatus(200); // Respond to preflight immediately
+    }
+  
+    next();
+  });
+  
+
+
+
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
