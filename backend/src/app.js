@@ -1,22 +1,20 @@
 import express from "express";
 import cookieParser from "cookie-parser";
+import cors from "cors"; // ✅ import cors
 
 // Create App
 const app = express();
 
-// 🔥 Force CORS for ALL requests
-app.use((req, res, next) => {
-  const allowedOrigin = "https://pinnacle-real-estate-project.vercel.app";
-  res.header("Access-Control-Allow-Origin", allowedOrigin);
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200); // Immediately respond to preflight
-  }
-  next();
-});
+// 🔥 Use CORS middleware
+const allowedOrigin = ["https://pinnacle-real-estate-project.vercel.app","http://localhost:8000"];
+app.use(
+  cors({
+    origin: allowedOrigin,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // allow cookies
+  })
+);
 
 // Body Parsers
 app.use(express.json({ limit: "16kb" }));
@@ -44,4 +42,3 @@ app.use("/api/contacts", contactRoutes);
 app.use("/api/team", teamRouter);
 
 export { app };
-
