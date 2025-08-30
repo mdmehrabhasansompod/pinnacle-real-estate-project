@@ -154,7 +154,7 @@ const Footer = () => {
 
       {/* Divider & Bottom */}
       <div className="border-t border-gray-700 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 gap-4 md:gap-0">
-        <p>&copy2025 Pinnacle. All Rights Reserved | Developed by MVIOT PV</p>
+        <p>&copy;2025 Pinnacle. All Rights Reserved | Developed by MVIOT PV</p>
         <div className="flex gap-6 text-white text-xl">
           {[{ icon: FaFacebookF, label: 'Facebook' },
             { icon: FaLinkedinIn, label: 'LinkedIn' },
