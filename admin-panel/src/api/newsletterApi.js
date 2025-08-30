@@ -5,7 +5,7 @@ const API = `${baseApi}/newsletters`;
 
 // 📩 Get all subscribers
 export const getAllEmails = async () => {
-  const res = await axios.get(`${API}`);
+  const res = await axios.get(`${API}/`);
   return res.data;
 };
 
