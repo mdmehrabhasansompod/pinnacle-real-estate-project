@@ -173,9 +173,9 @@ const ContactForm = () => {
           {/* Row 2 */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
             {[ 
-              { name: "budget", icon: FiDollarSign, type: "select", options: ["<$5k","$5k-$10k","$10k-$25k","$25k+"] },
+              { name: "budget", icon: FiDollarSign, type: "select", options: ["<$50k","$50k-$100k","$100k-$250k","$250k+"] },
               { name: "location", icon: FiMapPin, type: "text", placeholder: "Location" },
-              { name: "service", icon: FiLayers, type: "select", options: ["Residential Construction","Custom Homes","Community Development","Renovations"] },
+              { name: "service", icon: FiLayers, type: "select", options: ["Residential Construction","Commercial Construction","Property Management","Development Services"] },
             ].map((field, i) => (
               <motion.div key={field.name} custom={i+3} variants={fieldVariant}>
                 <label className="block text-sm text-gray-300 mb-2">{field.name.charAt(0).toUpperCase() + field.name.slice(1)}</label>
