@@ -22,7 +22,10 @@ const Service = () => {
     hover: { scale: 1.05, y: -5, boxShadow: "0 25px 50px rgba(0,0,0,0.2)" },
   };
 
-  const buttonHover = { scale: 1.05, transition: { type: "spring", stiffness: 300 } };
+  const buttonHover = {
+    scale: 1.05,
+    transition: { type: "spring", stiffness: 300 },
+  };
 
   // Fetch all services from backend
   useEffect(() => {
@@ -53,7 +56,6 @@ const Service = () => {
 
   return (
     <div className="text-white">
-
       {/* Intro Section */}
       <motion.div
         className="max-w-6xl mx-auto py-16 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
@@ -75,7 +77,9 @@ const Service = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Pinnacle's commitment to excellence extends beyond just constructing buildings — it's about crafting exceptional spaces that inspire and delight.
+          Pinnacle's commitment to excellence extends beyond just constructing
+          buildings — it's about crafting exceptional spaces that inspire and
+          delight.
         </motion.p>
       </motion.div>
 
@@ -97,7 +101,7 @@ const Service = () => {
       {categories.map((category) => (
         <motion.div
           key={category.category}
-          id={category.category.replace(/\s+/g, "-").toLowerCase()}
+          id={category.category.replace(/\s+/g, "-").toLowerCase()} // 🔥 Category ID
           className="max-w-6xl mx-auto py-16 px-4 sm:px-6"
           initial="hidden"
           whileInView="visible"
@@ -115,6 +119,7 @@ const Service = () => {
             {category.items.map((service) => (
               <motion.div
                 key={service.title}
+                id={service.title.replace(/\s+/g, "-").toLowerCase()} // 🔥 Service ID
                 className="flex flex-col bg-gray-900/40 backdrop-blur-xl rounded-2xl overflow-hidden cursor-pointer"
                 variants={cardVariants}
                 whileHover="hover"
@@ -126,7 +131,9 @@ const Service = () => {
                     className="w-full h-full object-cover rounded-t-2xl"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end justify-center p-4">
-                    <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold text-center">{service.title}</h3>
+                    <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold text-center">
+                      {service.title}
+                    </h3>
                   </div>
                 </div>
                 <div className="p-6 flex flex-col justify-between h-full">

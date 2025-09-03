@@ -63,10 +63,10 @@ const Footer = () => {
       ] 
     },
     { title: 'Services', items: [
-        { label: 'Residential Construction', to: '/services#residential' },
-        { label: 'Commercial Construction', to: '/services#commercial' },
-        { label: 'Property Management', to: '/services#management' },
-        { label: 'Development Services', to: '/services#development' }
+        { label: 'Residential Construction', to: '/services#residential-construction' },
+        { label: 'Commercial Construction', to: '/services#commercial-construction' },
+        { label: 'Property Management', to: '/services#property-management' },
+        { label: 'Development Services', to: '/services#development-services' }
       ] 
     },
     { title: 'Contact Us', items: [
